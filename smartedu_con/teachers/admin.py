@@ -7,3 +7,4 @@ from .models import Teacher
 class CourseAdmin(admin.ModelAdmin):
     list_display = ('id', 'name',)
     search_fields = ('name', 'description')
+    list_display_links= ('id', 'name',)
