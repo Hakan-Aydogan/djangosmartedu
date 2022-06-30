@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-
+from django.contrib.auth.models import User
 from .models import Category, Course, Tag
 
 
@@ -68,6 +68,7 @@ def course_detail(request, category_slug, course_id):
     categories = Category.objects.all()
     tags = Tag.objects.all()
     current_user = request.user
+    students_count = course.students.count()
 
     enrolled_courses = current_user.courses_joined.all()
 
@@ -76,6 +77,7 @@ def course_detail(request, category_slug, course_id):
         'categories': categories,
         'tags': tags,
         'enrolled_courses': enrolled_courses,
+        'students_count': students_count,
     }
     return render(request, 'course.html', context)
 
