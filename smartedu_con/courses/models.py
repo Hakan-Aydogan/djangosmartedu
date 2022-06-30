@@ -2,6 +2,7 @@ from turtle import mode
 from django.db import models
 
 from teachers.models import Teacher
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -27,6 +28,7 @@ class Course(models.Model):
     description = models.TextField(verbose_name='Açıklama',
                                    help_text='Kurs Açıklaması Giriniz', null=False, blank=False)
     teacher= models.ForeignKey(Teacher, null=True,on_delete=models.CASCADE, verbose_name='Eğitmen')
+    students=models.ManyToManyField(User, blank=True,null=True, related_name='courses_joined' )
     category=models.ForeignKey(Category, null=True,on_delete=models.DO_NOTHING)
     tags=models.ManyToManyField(Tag,blank=True, null=True)
     image = models.ImageField(

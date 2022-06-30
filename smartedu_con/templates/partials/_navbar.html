@@ -48,15 +48,30 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
           <li>
-            <a
-              class="hover-btn-new log orange"
-              href="#"
-              data-toggle="modal"
-              data-target="#login"
-              ><span>Book Now</span></a
+            <a class="hover-btn-new log orange" href="{% url 'dashboard' %}"
+              ><span>{{user.username}}</span></a
             >
           </li>
+          <li>
+            <a class="hover-btn-new log orange" href="{% url 'logout' %}"
+              ><span>Logout</span></a
+            >
+          </li>
+          {% else %}
+          <li>
+            <a class="hover-btn-new log orange" href="{% url 'login' %}"
+              ><span>Login</span></a
+            >
+          </li>
+          <li>
+            <a class="hover-btn-new log orange" href="{% url 'register' %}"
+              ><span>Register</span></a
+            >
+          </li>
+          {% endif %}
+         
         </ul>
       </div>
     </div>

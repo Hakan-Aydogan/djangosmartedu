@@ -1,8 +1,3 @@
-from cgitb import text
-from dataclasses import fields
-import email
-from turtle import textinput
-from xml.dom.minidom import Attr
 from django import forms
 from .models import Contact
 
