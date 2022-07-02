@@ -69,9 +69,10 @@ def course_detail(request, category_slug, course_id):
     tags = Tag.objects.all()
     current_user = request.user
     students_count = course.students.count()
-
-    enrolled_courses = current_user.courses_joined.all()
-
+    if current_user.is_authenticated:
+        enrolled_courses = current_user.courses_joined.all()
+    else:
+        enrolled_courses = {}
     context = {
         'course': course,
         'categories': categories,
